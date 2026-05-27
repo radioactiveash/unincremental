@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk8gihepob1a4"]
+[gd_scene load_steps=3 format=3 uid="uid://dk8gihepob1a4"]
 
 [ext_resource type="StyleBox" uid="uid://8jttf60qh3wo" path="res://blue_new_style_box_flat.tres" id="1_ig7tw"]
 [ext_resource type="StyleBox" uid="uid://d1h7ywra13ck7" path="res://black_new_style_box_flat.tres" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://n660xtvkod0c" path="res://scripts/console.gd" id="3_h2yge"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -24,22 +23,37 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="buys" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="buys" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("1_ig7tw")
 
-[node name="viewfinder" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="viewfinder" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_0xm2m")
 
-[node name="console" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="console" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_0xm2m")
-script = ExtResource("3_h2yge")
+
+[node name="dialog" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/console"]
+layout_mode = 2
+text = "
+"
+
+[node name="techtree" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_ig7tw")

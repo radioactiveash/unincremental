@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="GameEvent" load_steps=2 format=3 uid="uid://4x7wqfmrvv2l"]
-
-[ext_resource type="Script" uid="uid://blvwnhgrdlvve" path="res://scripts/game_event.gd" id="1_cwehm"]
-
-[resource]
-script = ExtResource("1_cwehm")
-name = "event_start"
-dialog = "this is the start of the game"
