@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bygpqsrkr7quo"]
+
+[ext_resource type="Script" uid="uid://ce7op3ww3txru" path="res://scripts/input_response.gd" id="1_6q7cv"]
+[ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://ibm-dos-vga-9x16.otf" id="1_8bgyy"]
+
+[node name="InputResponse" type="VBoxContainer"]
+script = ExtResource("1_6q7cv")
+
+[node name="InputHistory" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_8bgyy")
+text = "User Input"
+
+[node name="Response" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8bgyy")
+text = "Response"
