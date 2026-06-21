@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bygpqsrkr7quo"]
+[gd_scene load_steps=4 format=3 uid="uid://bygpqsrkr7quo"]
 
 [ext_resource type="Script" uid="uid://ce7op3ww3txru" path="res://scripts/input_response.gd" id="1_6q7cv"]
 [ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://ibm-dos-vga-9x16.otf" id="1_8bgyy"]
+[ext_resource type="PackedScene" uid="uid://dfrdiq05vhugp" path="res://response.tscn" id="3_enmmk"]
 
 [node name="InputResponse" type="VBoxContainer"]
 script = ExtResource("1_6q7cv")
@@ -11,8 +12,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("1_8bgyy")
 text = "User Input"
+autowrap_mode = 3
 
-[node name="Response" type="Label" parent="."]
+[node name="Response" parent="." instance=ExtResource("3_enmmk")]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_8bgyy")
-text = "Response"

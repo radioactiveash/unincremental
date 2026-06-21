@@ -75,6 +75,8 @@ layout_mode = 2
 
 [node name="HistoryRows" type="VBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="InputArea" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
