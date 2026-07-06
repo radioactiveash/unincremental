@@ -1,0 +1,9 @@
+COMMAND LIST: 
+
+
+help : OPEN COMMAND LIST
+
+sub <information> : SUBSCRIBE INFO TO UPDATES EVERY TICK
+
+unsub <information> : UNSUBSCRIBE INFO TO UPDATES EVERY TICK
+KNOWN INFORMATION : tickcount, position

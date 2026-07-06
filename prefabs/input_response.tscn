@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bygpqsrkr7quo"]
+
+[ext_resource type="Script" uid="uid://ce7op3ww3txru" path="res://scripts/input_response.gd" id="1_ljbb3"]
+[ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://fonts/ibm-dos-vga-9x16.otf" id="2_7shar"]
+[ext_resource type="PackedScene" uid="uid://dfrdiq05vhugp" path="res://prefabs/response.tscn" id="3_wlriq"]
+
+[node name="InputResponse" type="VBoxContainer" unique_id=1683138345]
+script = ExtResource("1_ljbb3")
+
+[node name="InputHistory" type="Label" parent="." unique_id=1586414273]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_7shar")
+theme_override_font_sizes/font_size = 12
+text = "User Input"
+autowrap_mode = 3
+
+[node name="Response" parent="." unique_id=1832060389 instance=ExtResource("3_wlriq")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12

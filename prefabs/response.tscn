@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfrdiq05vhugp"]
+
+[ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://fonts/ibm-dos-vga-9x16.otf" id="1_gs0vp"]
+[ext_resource type="Script" uid="uid://bo21k5l23h75q" path="res://scripts/response.gd" id="2_gs0vp"]
+
+[node name="Response" type="Label"]
+offset_right = 400.0
+offset_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_gs0vp")
+theme_override_font_sizes/font_size = 12
+text = "Response"
+autowrap_mode = 3
+script = ExtResource("2_gs0vp")

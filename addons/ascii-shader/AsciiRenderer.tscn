@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d3ecdsitw4adk"]
+
+[ext_resource type="Shader" uid="uid://g0ijsr5uhdmc" path="res://addons/ascii-shader/ascii.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://bwu6thqq1p5v4" path="res://addons/ascii-shader/character_map.png" id="2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vgbwm"]
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/character_map = ExtResource("2")
+shader_parameter/number_of_characters = 8.0
+shader_parameter/character_size = Vector2(8, 16)
+
+[sub_resource type="QuadMesh" id="1"]
+flip_faces = true
+
+[node name="AsciiRenderer" type="MeshInstance3D" unique_id=394524366]
+material_override = SubResource("ShaderMaterial_vgbwm")
+mesh = SubResource("1")

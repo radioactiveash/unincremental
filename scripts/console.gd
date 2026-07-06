@@ -1,6 +1,6 @@
 extends Node
 
-const InputResponse = preload("res://input_response.tscn")
+const InputResponse = preload("res://prefabs/input_response.tscn")
 
 @onready var history_rows = $VBoxContainer/GameInfo/ScrollContainer/HistoryRows
 
@@ -9,7 +9,8 @@ const InputResponse = preload("res://input_response.tscn")
 
 @onready var command_processor = $CommandProcessor
 
-const Response = preload("res://response.tscn")
+
+const Response = preload("res://prefabs/response.tscn")
 var max_scroll_length := 0
 
 func _ready() -> void:
@@ -17,13 +18,14 @@ func _ready() -> void:
 	max_scroll_length = scrollbar.max_value
 	
 	var boot_message = Response.instantiate()
-	var boot_ascii = FileAccess.open("res://koala.txt", FileAccess.READ)
+	var boot_ascii = FileAccess.open("res://text/koala.txt", FileAccess.READ)
 	boot_message.text = boot_ascii.get_as_text()
 	boot_ascii.close()
-	
-	boot_message.chars_per_second = 128
-
 	add_response(boot_message)
+	
+	
+	# bootup tasks
+	command_processor.process_command("sub tickcount")
 
 
 func _on_input_text_submitted(new_text: String) -> void:

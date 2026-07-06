@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://dk8gihepob1a4"]
+
+[ext_resource type="Script" uid="uid://bopt62xcqcof" path="res://scripts/game.gd" id="1_1dwcq"]
+[ext_resource type="StyleBox" uid="uid://d1h7ywra13ck7" path="res://styles/black.tres" id="2_f2ya0"]
+[ext_resource type="StyleBox" uid="uid://8jttf60qh3wo" path="res://styles/blue_new_style_box_flat.tres" id="2_kfaqx"]
+[ext_resource type="Script" uid="uid://6nhoip5g2pxv" path="res://scripts/console.gd" id="4_xugix"]
+[ext_resource type="Script" uid="uid://cf4xxl1054ejg" path="res://scripts/command_processor.gd" id="5_nhjm5"]
+[ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://fonts/ibm-dos-vga-9x16.otf" id="6_1dwcq"]
+[ext_resource type="StyleBox" uid="uid://d014el38eoceg" path="res://styles/black_noborder.tres" id="6_f2ya0"]
+[ext_resource type="Material" uid="uid://dm5dr1h4aqwua" path="res://materials/black.tres" id="6_sd0oo"]
+[ext_resource type="Material" uid="uid://jgfmxjqakgfx" path="res://materials/white.tres" id="6_xugix"]
+[ext_resource type="Script" uid="uid://cg3imxwhkmo86" path="res://scripts/input.gd" id="7_sgtj2"]
+[ext_resource type="Script" uid="uid://d2vnehrg8i7hs" path="res://prefabs/tickupdates.gd" id="8_kfaqx"]
+[ext_resource type="Environment" uid="uid://cpdok83dmk3e0" path="res://environment.tres" id="8_sgtj2"]
+[ext_resource type="Script" uid="uid://cepcdd81tgutj" path="res://prefabs/temp_satellite_orbit.gd" id="9_sgtj2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2yge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lquwl"]
+
+[node name="Main" type="Control" unique_id=163507080]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Game" type="Node" parent="." unique_id=811604415]
+unique_name_in_owner = true
+script = ExtResource("1_1dwcq")
+
+[node name="Timer" type="Timer" parent="Game" unique_id=1906238410]
+wait_time = 0.135
+autostart = true
+
+[node name="GamePanel" type="PanelContainer" parent="." unique_id=824329188]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_f2ya0")
+
+[node name="MarginContainer" type="MarginContainer" parent="GamePanel" unique_id=927421727]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GamePanel/MarginContainer" unique_id=245609077]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer" unique_id=1575069836]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="tickscreen" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=620444668]
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_f2ya0")
+
+[node name="tickupdates" type="RichTextLabel" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/tickscreen" unique_id=1528735025]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_1dwcq")
+script = ExtResource("8_kfaqx")
+
+[node name="buys" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1583727730]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_kfaqx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=662587633]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer" unique_id=613313433]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=1300368562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+radial_segments = 8
+rings = 8
+material = ExtResource("6_sd0oo")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=556001945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+flip_faces = true
+radius = 0.51
+radial_segments = 8
+rings = 8
+material = ExtResource("6_xugix")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=807420780]
+
+[node name="Camera3D" type="Camera3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=295130130]
+environment = ExtResource("8_sgtj2")
+
+[node name="OrbitalCenter" type="Node3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=2123285223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="satellite" type="Node3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/OrbitalCenter" unique_id=742531801]
+script = ExtResource("9_sgtj2")
+
+[node name="Label3D" type="Label3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/OrbitalCenter/satellite" unique_id=1080780093]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, 0, 0)
+pixel_size = 0.01
+billboard = 1
+texture_filter = 0
+text = "_
+\\_/
+|
+/--\\
+|___|
+/     \\"
+font = ExtResource("6_1dwcq")
+font_size = 10
+outline_size = 0
+
+[node name="console" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2037455296]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_f2ya0")
+script = ExtResource("4_xugix")
+
+[node name="CommandProcessor" type="Node" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=426836772]
+script = ExtResource("5_nhjm5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=1068566939]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GameInfo" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=1451742240]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_f2ya0")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo" unique_id=1931153942]
+layout_mode = 2
+
+[node name="HistoryRows" type="VBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo/ScrollContainer" unique_id=242794830]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InputArea" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=1181450347]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("6_f2ya0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea" unique_id=1804766378]
+layout_mode = 2
+
+[node name="Caret" type="Label" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=959704486]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_1dwcq")
+theme_override_font_sizes/font_size = 12
+text = " > "
+
+[node name="Input" type="LineEdit" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=1572826922]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_1dwcq")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h2yge")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lquwl")
+max_length = 32
+keep_editing_on_text_submit = true
+script = ExtResource("7_sgtj2")
+
+[node name="techtree" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer" unique_id=403823518]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_kfaqx")
+
+[connection signal="timeout" from="Game/Timer" to="Game" method="_on_timer_timeout"]
+[connection signal="timeout" from="Game/Timer" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/tickscreen/tickupdates" method="_on_timer_timeout"]
+[connection signal="timeout" from="Game/Timer" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/OrbitalCenter" method="_on_timer_timeout"]
+[connection signal="text_submitted" from="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
