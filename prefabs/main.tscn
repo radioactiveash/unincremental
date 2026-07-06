@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bopt62xcqcof" path="res://scripts/game.gd" id="1_1dwcq"]
 [ext_resource type="StyleBox" uid="uid://d1h7ywra13ck7" path="res://styles/black.tres" id="2_f2ya0"]
+[ext_resource type="Shader" uid="uid://6n2mgcciu05m" path="res://crt/new_shader.gdshader" id="2_yhbhu"]
 [ext_resource type="Script" uid="uid://6nhoip5g2pxv" path="res://scripts/console.gd" id="4_xugix"]
 [ext_resource type="Script" uid="uid://cf4xxl1054ejg" path="res://scripts/command_processor.gd" id="5_nhjm5"]
 [ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://fonts/ibm-dos-vga-9x16.otf" id="6_1dwcq"]
@@ -10,9 +11,10 @@
 [ext_resource type="Material" uid="uid://dm5dr1h4aqwua" path="res://materials/black.tres" id="6_sd0oo"]
 [ext_resource type="Material" uid="uid://jgfmxjqakgfx" path="res://materials/white.tres" id="6_xugix"]
 [ext_resource type="Script" uid="uid://cg3imxwhkmo86" path="res://scripts/input.gd" id="7_sgtj2"]
-[ext_resource type="Script" uid="uid://d2vnehrg8i7hs" path="res://prefabs/tickupdates.gd" id="8_kfaqx"]
-[ext_resource type="Script" uid="uid://bhjmug2qoeafu" path="res://prefabs/camera_orbit.gd" id="9_mbcw0"]
-[ext_resource type="Script" uid="uid://cepcdd81tgutj" path="res://prefabs/temp_satellite_orbit.gd" id="9_sgtj2"]
+[ext_resource type="Script" uid="uid://d2vnehrg8i7hs" path="res://scripts/tickupdates.gd" id="8_kfaqx"]
+[ext_resource type="Script" uid="uid://bhjmug2qoeafu" path="res://scripts/camera_orbit.gd" id="9_mbcw0"]
+[ext_resource type="Script" uid="uid://cepcdd81tgutj" path="res://scripts/temp_satellite_orbit.gd" id="9_sgtj2"]
+[ext_resource type="Texture2D" uid="uid://c487fp8g1jgq4" path="res://satellite.png" id="11_n3pe4"]
 [ext_resource type="PackedScene" uid="uid://d3ecdsitw4adk" path="res://addons/ascii-shader/AsciiRenderer.tscn" id="11_yhbhu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n3pe4"]
@@ -30,6 +32,23 @@ sky = SubResource("Sky_fsdge")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lquwl"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_6xkc8"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8s0q"]
+resource_local_to_scene = true
+shader = ExtResource("2_yhbhu")
+shader_parameter/tex = SubResource("ViewportTexture_6xkc8")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.0
+
 [node name="Main" type="Control" unique_id=1813473096]
 layout_mode = 3
 anchors_preset = 15
@@ -39,16 +58,32 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="Game" type="Node" parent="." unique_id=2044467409]
+[node name="game" type="Node" parent="." unique_id=2044467409]
 unique_name_in_owner = true
 script = ExtResource("1_1dwcq")
 
-[node name="Timer" type="Timer" parent="Game" unique_id=2057724576]
+[node name="settings" type="Node" parent="game" unique_id=192765739]
+
+[node name="Timer" type="Timer" parent="game" unique_id=2057724576]
 autostart = true
 
-[node name="GamePanel" type="PanelContainer" parent="." unique_id=1784260104]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1315458103]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1968977716]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="GamePanel" type="PanelContainer" parent="SubViewportContainer/SubViewport" unique_id=1784260104]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,146 +93,134 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 
-[node name="MarginContainer" type="MarginContainer" parent="GamePanel" unique_id=2122164988]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/GamePanel" unique_id=2122164988]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GamePanel/MarginContainer" unique_id=592760459]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer" unique_id=592760459]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer" unique_id=73826976]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer" unique_id=73826976]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="tickscreen" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=932271248]
+[node name="tickscreen" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=932271248]
 custom_maximum_size = Vector2(356, -1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 
-[node name="tickupdates" type="RichTextLabel" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/tickscreen" unique_id=712327636]
+[node name="tickupdates" type="RichTextLabel" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/tickscreen" unique_id=712327636]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_1dwcq")
 script = ExtResource("8_kfaqx")
 
-[node name="viewport" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=181765215]
+[node name="viewport" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=181765215]
 custom_maximum_size = Vector2(-1, 512)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_f2ya0")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport" unique_id=1101148976]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport" unique_id=1101148976]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer" unique_id=974642137]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer" unique_id=974642137]
 handle_input_locally = false
 size = Vector2i(496, 496)
 render_target_update_mode = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=1717459492]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=1717459492]
 environment = SubResource("Environment_mbcw0")
 
-[node name="CameraOrbit" type="Node3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=140288552]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-script = ExtResource("9_mbcw0")
+[node name="CameraOrbit" type="Node3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=140288552]
 
-[node name="AsciiRenderer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/CameraOrbit" unique_id=807262234 instance=ExtResource("11_yhbhu")]
+[node name="AsciiRenderer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/CameraOrbit" unique_id=807262234 instance=ExtResource("11_yhbhu")]
 visible = false
 
-[node name="Camera3D" type="Camera3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/CameraOrbit" unique_id=339197065]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/CameraOrbit" unique_id=339197065]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, 0)
 fov = 40.0
+script = ExtResource("9_mbcw0")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=1686646711]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-radial_segments = 8
+[node name="CSGSphere3D" type="CSGSphere3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=1686646711]
 rings = 12
 material = ExtResource("6_sd0oo")
 
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=1934514635]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=1934514635]
 flip_faces = true
 radius = 0.51
-radial_segments = 8
 rings = 12
 material = ExtResource("6_xugix")
 
-[node name="OrbitalCenter" type="Node3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=413390058]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="OrbitalCenter" type="Node3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport" unique_id=413390058]
 
-[node name="satellite" type="Node3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter" unique_id=1786792298]
+[node name="satellite" type="Node3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter" unique_id=1786792298]
 script = ExtResource("9_sgtj2")
 
-[node name="CSGTorus3D" type="CSGTorus3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite" unique_id=309033925]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+[node name="CSGTorus3D" type="CSGTorus3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite" unique_id=309033925]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742279e-08, 0, -8.742279e-08, -1, 0, 0, 0)
 inner_radius = 0.65
 outer_radius = 0.66
 sides = 16
 ring_sides = 3
 material = ExtResource("6_xugix")
 
-[node name="Label3D" type="Label3D" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite" unique_id=1449614376]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.69528, 0, 0)
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite" unique_id=1915476088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 0, 0)
+pixel_size = 0.001
 billboard = 1
+no_depth_test = true
 texture_filter = 0
-text = "_
-\\_/
-|
-/--\\
-|___|
-/     \\"
-font = ExtResource("6_1dwcq")
-font_size = 10
-outline_size = 0
+texture = ExtResource("11_n3pe4")
 
-[node name="console" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=335228974]
+[node name="console" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=335228974]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("4_xugix")
 
-[node name="CommandProcessor" type="Node" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=863406259]
+[node name="CommandProcessor" type="Node" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=863406259]
 script = ExtResource("5_nhjm5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=422998368]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=422998368]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="GameInfo" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=725337389]
+[node name="GameInfo" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=725337389]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("6_f2ya0")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo" unique_id=722144796]
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo" unique_id=722144796]
 layout_mode = 2
 
-[node name="HistoryRows" type="VBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo/ScrollContainer" unique_id=2001733612]
+[node name="HistoryRows" type="VBoxContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo/ScrollContainer" unique_id=2001733612]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InputArea" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=944476404]
+[node name="InputArea" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=944476404]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("6_f2ya0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea" unique_id=2003423174]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea" unique_id=2003423174]
 layout_mode = 2
 
-[node name="Caret" type="Label" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=877255116]
+[node name="Caret" type="Label" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=877255116]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("6_1dwcq")
 theme_override_font_sizes/font_size = 12
 text = " > "
 
-[node name="Input" type="LineEdit" parent="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=1083315099]
+[node name="Input" type="LineEdit" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=1083315099]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 1, 0, 1)
@@ -209,14 +232,24 @@ max_length = 32
 keep_editing_on_text_submit = true
 script = ExtResource("7_sgtj2")
 
-[node name="techtree" type="PanelContainer" parent="GamePanel/MarginContainer/VBoxContainer" unique_id=740025063]
+[node name="techtree" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer" unique_id=740025063]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 
-[connection signal="timeout" from="Game/Timer" to="Game" method="_on_timer_timeout"]
-[connection signal="timeout" from="Game/Timer" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/tickscreen/tickupdates" method="_on_timer_timeout"]
-[connection signal="timeout" from="Game/Timer" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite" method="_on_timer_timeout"]
-[connection signal="text_submitted" from="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" method="_on_input_text_submitted"]
-[connection signal="text_submitted" from="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" to="GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" method="_on_text_submitted"]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1963863274]
+material = SubResource("ShaderMaterial_x8s0q")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="timeout" from="game/Timer" to="game" method="_on_timer_timeout"]
+[connection signal="timeout" from="game/Timer" to="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/tickscreen/tickupdates" method="_on_timer_timeout"]
+[connection signal="timeout" from="game/Timer" to="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite" method="_on_timer_timeout"]
+[connection signal="text_submitted" from="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" to="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console" method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" to="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer/Input" method="_on_text_submitted"]

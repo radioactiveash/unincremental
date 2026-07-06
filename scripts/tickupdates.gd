@@ -22,9 +22,9 @@ func _on_timer_timeout() -> void:
 		if(subscribed_info[i] == true):
 			match(i):
 				Enums.Information.TICKCOUNT:
-					output += ("\nSECONDS ELAPSED: " + str(%Game.tickcount * %Game.tickspeed))
-					output += ("\nTICKSPEED (s): " + str(%Game.tickspeed))
-					output += ("\nTOTAL TICKS: " + str(%Game.tickcount))
+					output += ("\nSECONDS ELAPSED: " + str(%game.tickcount * %game.tickspeed))
+					output += ("\nTICKSPEED (s): " + str(%game.tickspeed))
+					output += ("\nTOTAL TICKS: " + str(%game.tickcount))
 
 				Enums.Information.POSITION:
 					output += "\n\nPosition"
