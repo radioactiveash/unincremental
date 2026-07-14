@@ -17,16 +17,17 @@ func remove_subscribed_info(info: Enums.Information):
 
 
 func _on_timer_timeout() -> void:
-	var output = "TICK UPDATES: \n \n"
+	var output = "........ TICK UPDATES ........"
 	for i in subscribed_info.size():
 		if(subscribed_info[i] == true):
 			match(i):
-				Enums.Information.TICKCOUNT:
-					output += ("\nSECONDS ELAPSED: " + str(%game.tickcount * %game.tickspeed))
-					output += ("\nTICKSPEED (s): " + str(%game.tickspeed))
-					output += ("\nTOTAL TICKS: " + str(%game.tickcount))
-
+				Enums.Information.TICK:
+					output += ("\n\n--- TICK ---")
+					output += ("\nElapsed Time (s): " + str(%game.tickcount * %game.tickspeed))
+					output += ("\nTickspeed (s): " + str(%game.tickspeed))
+					output += ("\nTotal Ticks: " + str(%game.tickcount))
 				Enums.Information.POSITION:
-					output += "\n\nPosition"
+					output += "\n\n--- POSITION ---"
+					output += "\n Number 1: " + str(Vector3.ZERO)
 			
 	%tickupdates.text = output

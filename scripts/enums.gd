@@ -1,3 +1,3 @@
 class_name Enums
 
-enum Information {TICKCOUNT, POSITION}
+enum Information {TICK, POSITION}

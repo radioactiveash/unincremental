@@ -1,9 +1,13 @@
-COMMAND LIST: 
+......... KNOWN COMMAND LIST .......
 
+help : Open Command list
 
-help : OPEN COMMAND LIST
+--- TICKUPDATE WINDOW ---
+sub <information> : Subscribe info to Tick Updates
 
-sub <information> : SUBSCRIBE INFO TO UPDATES EVERY TICK
+unsub <information> : Unsubscribe info from Tick Updates
 
-unsub <information> : UNSUBSCRIBE INFO TO UPDATES EVERY TICK
-KNOWN INFORMATION : tickcount, position
+Known information : tick, pos
+-------------------------
+
+....................................

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bqx3dhetk02w3"]
+[gd_scene load_steps=8 format=3 uid="uid://bqx3dhetk02w3"]
 
 [ext_resource type="StyleBox" uid="uid://d1h7ywra13ck7" path="res://styles/black.tres" id="2_73611"]
 [ext_resource type="Script" uid="uid://6nhoip5g2pxv" path="res://scripts/console.gd" id="3_0t8k7"]
@@ -6,94 +6,94 @@
 [ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://fonts/ibm-dos-vga-9x16.otf" id="5_sy450"]
 [ext_resource type="Script" uid="uid://cg3imxwhkmo86" path="res://scripts/input.gd" id="6_yhce0"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2yge"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lquwl"]
 
-[node name="GamePanel" type="PanelContainer" unique_id=403624037]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2yge"]
+
+[node name="GamePanel" type="PanelContainer"]
 offset_right = 1280.0
 offset_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=113184221]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1804187243]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1722840640]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="buys" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1183480187]
+[node name="buys" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="viewfinder" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1134126556]
+[node name="viewfinder" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_73611")
 
-[node name="console" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=298859396]
+[node name="console" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_73611")
 script = ExtResource("3_0t8k7")
 
-[node name="CommandProcessor" type="Node" parent="MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=875702015]
+[node name="CommandProcessor" type="Node" parent="MarginContainer/VBoxContainer/HBoxContainer/console"]
 script = ExtResource("4_hodx5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console" unique_id=592463672]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="GameInfo" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=561231864]
+[node name="GameInfo" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_73611")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo" unique_id=680647260]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo"]
 layout_mode = 2
 
-[node name="HistoryRows" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo/ScrollContainer" unique_id=1029924973]
+[node name="HistoryRows" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/GameInfo/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InputArea" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer" unique_id=1849995126]
+[node name="InputArea" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_73611")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea" unique_id=1155935101]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea"]
 layout_mode = 2
 
-[node name="Caret" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=981546571]
+[node name="Caret" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("5_sy450")
 theme_override_font_sizes/font_size = 12
 text = " > "
 
-[node name="Input" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer" unique_id=2108329095]
+[node name="Input" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/console/VBoxContainer/InputArea/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("5_sy450")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_h2yge")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lquwl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h2yge")
 max_length = 32
 keep_editing_on_text_submit = true
 script = ExtResource("6_yhce0")
 
-[node name="techtree" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=737374613]
+[node name="techtree" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

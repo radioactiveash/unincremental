@@ -21,21 +21,22 @@ func process_command(input: String):
 			return sub(arg)
 		"unsub":
 			return unsub(arg)
+	
+	return "<ERROR> COMMAND NOT RECOGNISED. Use help for command list. \n"
 
-	return "<ERROR> COMMAND NOT RECOGNISED. USE help FOR COMMAND LIST. \n"
 
 func sub(arg: String):
 	match(arg.to_lower()):
-		"tickcount":
-			%tickupdates.add_subscribed_info(Enums.Information.TICKCOUNT)
-		"position":
+		"tick":
+			%tickupdates.add_subscribed_info(Enums.Information.TICK)
+		"pos":
 			%tickupdates.add_subscribed_info(Enums.Information.POSITION)
 	
-	return "ADDED " + arg.to_upper() + " TO SUBSCRIBED INFORMATION"
+	return "Added " + arg.to_upper() + " from subscribed information."
 func unsub(arg:String):
 	match(arg.to_lower()):
-		"tickcount":
-			%tickupdates.remove_subscribed_info(Enums.Information.TICKCOUNT)
-		"position":
+		"tick":
+			%tickupdates.remove_subscribed_info(Enums.Information.TICK)
+		"pos":
 			%tickupdates.remove_subscribed_info(Enums.Information.POSITION)
-	return "REMOVED " + arg.to_upper() + " FROM SUBSCRIBED INFORMATION"
+	return "Removed " + arg.to_upper() + " from subscribed information."

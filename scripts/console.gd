@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 	
 	# bootup tasks
-	command_processor.process_command("sub tickcount")
+	# command_processor.process_command("sub tickcount")
 
 
 func _on_input_text_submitted(new_text: String) -> void:
