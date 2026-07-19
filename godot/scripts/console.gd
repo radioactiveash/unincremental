@@ -1,4 +1,4 @@
-extends Node
+extends PanelHighlight
 
 const InputResponse = preload("res://prefabs/input_response.tscn")
 
@@ -14,6 +14,7 @@ const Response = preload("res://prefabs/response.tscn")
 var max_scroll_length := 0
 
 func _ready() -> void:
+	super()
 	scrollbar.changed.connect(_handle_scrollbar_changed) #signal
 	max_scroll_length = scrollbar.max_value
 	
@@ -27,6 +28,8 @@ func _ready() -> void:
 	# bootup tasks
 	# command_processor.process_command("sub tickcount")
 
+func _process(delta: float) -> void:
+	super(delta)
 
 func _on_input_text_submitted(new_text: String) -> void:
 	if(new_text.is_empty()): return
@@ -44,3 +47,4 @@ func _handle_scrollbar_changed():
 	if(max_scroll_length != scrollbar.max_value):
 		max_scroll_length = scrollbar.max_value
 		scroll.scroll_vertical = max_scroll_length
+		

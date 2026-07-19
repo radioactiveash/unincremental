@@ -1,20 +1,21 @@
 [gd_scene format=3 uid="uid://bygpqsrkr7quo"]
 
 [ext_resource type="Script" uid="uid://ce7op3ww3txru" path="res://scripts/input_response.gd" id="1_ljbb3"]
-[ext_resource type="FontFile" uid="uid://je1cq63f7tpb" path="res://fonts/ibm-dos-vga-9x16.otf" id="2_7shar"]
+[ext_resource type="FontFile" uid="uid://ctfm1eyvwua0o" path="res://fonts/Terminus (TTF) Bold 700.ttf" id="2_ljbb3"]
 [ext_resource type="PackedScene" uid="uid://dfrdiq05vhugp" path="res://prefabs/response.tscn" id="3_wlriq"]
 
 [node name="InputResponse" type="VBoxContainer" unique_id=1683138345]
+custom_minimum_size = Vector2(98.105, 0)
 script = ExtResource("1_ljbb3")
 
-[node name="InputHistory" type="Label" parent="." unique_id=1586414273]
+[node name="InputHistory" type="RichTextLabel" parent="." unique_id=1709972222]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_fonts/font = ExtResource("2_7shar")
-theme_override_font_sizes/font_size = 12
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_ljbb3")
 text = "User Input"
-autowrap_mode = 3
+fit_content = true
+selection_enabled = true
 
 [node name="Response" parent="." unique_id=1832060389 instance=ExtResource("3_wlriq")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12

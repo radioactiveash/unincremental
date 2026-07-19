@@ -10,6 +10,7 @@
 [ext_resource type="StyleBox" uid="uid://d014el38eoceg" path="res://styles/black_noborder.tres" id="6_f2ya0"]
 [ext_resource type="Texture2D" uid="uid://jaogvt6eo6sr" path="res://starmap_2020_4k.exr" id="6_fsdge"]
 [ext_resource type="Material" uid="uid://dm5dr1h4aqwua" path="res://materials/black.tres" id="6_sd0oo"]
+[ext_resource type="Script" uid="uid://cwaydqy42l17i" path="res://scripts/panel_highlight.gd" id="6_wfwyk"]
 [ext_resource type="Material" uid="uid://jgfmxjqakgfx" path="res://materials/white.tres" id="6_xugix"]
 [ext_resource type="Script" uid="uid://cg3imxwhkmo86" path="res://scripts/input.gd" id="7_sgtj2"]
 [ext_resource type="Script" uid="uid://d2vnehrg8i7hs" path="res://scripts/tickupdates.gd" id="8_kfaqx"]
@@ -17,6 +18,17 @@
 [ext_resource type="Script" uid="uid://cepcdd81tgutj" path="res://scripts/temp_satellite_orbit.gd" id="9_sgtj2"]
 [ext_resource type="Texture2D" uid="uid://c487fp8g1jgq4" path="res://satellite.png" id="11_n3pe4"]
 [ext_resource type="PackedScene" uid="uid://d3ecdsitw4adk" path="res://addons/ascii-shader/AsciiRenderer.tscn" id="11_yhbhu"]
+[ext_resource type="FontFile" uid="uid://ctfm1eyvwua0o" path="res://fonts/Terminus (TTF) Bold 700.ttf" id="17_ies5r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sli6c"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_right = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ies5r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mkjrf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ies5r"]
 panorama = ExtResource("6_fsdge")
@@ -30,9 +42,13 @@ process_mode = 1
 background_mode = 2
 sky = SubResource("Sky_wfwyk")
 
+[sub_resource type="LabelSettings" id="LabelSettings_4k7nj"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2yge"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lquwl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdj3s"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6xkc8"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -82,7 +98,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2059051921]
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="GamePanel" type="PanelContainer" parent="SubViewportContainer/SubViewport" unique_id=430107729]
@@ -105,29 +121,54 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VSplitContainer" type="VSplitContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer" unique_id=1196363038]
 layout_mode = 2
-split_offsets = PackedInt32Array(72)
-split_offset = 72
+split_offsets = PackedInt32Array(-40)
+split_offset = -40
 
 [node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer" unique_id=2066171699]
 layout_mode = 2
 size_flags_vertical = 3
-split_offsets = PackedInt32Array(0, 0)
+split_offsets = PackedInt32Array(356, 0)
+split_offset = 356
 
 [node name="tickscreen" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer" unique_id=915106663]
 custom_minimum_size = Vector2(356, 0)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_f2ya0")
+script = ExtResource("6_wfwyk")
 
 [node name="tickupdates" type="RichTextLabel" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/tickscreen" unique_id=1664312683]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("6_1dwcq")
+theme_override_fonts/normal_font = ExtResource("17_ies5r")
 script = ExtResource("8_kfaqx")
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/tickscreen" unique_id=1405615354]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(12, -23)
+theme_override_fonts/font = ExtResource("17_ies5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
+text = "Tick Updates"
+label_settings = SubResource("LabelSettings_ies5r")
 
 [node name="viewport" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer" unique_id=1785525549]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
+script = ExtResource("6_wfwyk")
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/viewport" unique_id=1860066404]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(12, -23)
+theme_override_fonts/font = ExtResource("17_ies5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
+text = "Viewport"
+label_settings = SubResource("LabelSettings_mkjrf")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/viewport" unique_id=116895294]
 clip_contents = true
@@ -138,7 +179,7 @@ stretch = true
 handle_input_locally = false
 scaling_3d_mode = 5
 anisotropic_filtering_level = 0
-size = Vector2i(736, 572)
+size = Vector2i(392, 367)
 render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/viewport/SubViewportContainer/SubViewport" unique_id=421613465]
@@ -195,6 +236,17 @@ size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("4_xugix")
 
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/console" unique_id=983177734]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(12, -23)
+theme_override_fonts/font = ExtResource("17_ies5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
+text = "Console"
+label_settings = SubResource("LabelSettings_4k7nj")
+
 [node name="CommandProcessor" type="Node" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/console" unique_id=1600017890]
 script = ExtResource("5_nhjm5")
 
@@ -205,6 +257,7 @@ theme_override_constants/separation = 0
 [node name="GameInfo" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/console/VBoxContainer" unique_id=711757534]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("6_f2ya0")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/console/VBoxContainer/GameInfo" unique_id=1279738114]
@@ -234,22 +287,32 @@ text = " > "
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_fonts/font = ExtResource("6_1dwcq")
-theme_override_font_sizes/font_size = 12
+theme_override_fonts/font = ExtResource("17_ies5r")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_h2yge")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lquwl")
 max_length = 32
 keep_editing_on_text_submit = true
 script = ExtResource("7_sgtj2")
 
-[node name="techtree" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer" unique_id=1584097621]
+[node name="techtree" type="PanelContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer" unique_id=48101556]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = ExtResource("2_f2ya0")
+script = ExtResource("6_wfwyk")
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/techtree" unique_id=498792707]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(12, -23)
+theme_override_fonts/font = ExtResource("17_ies5r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
+text = "TechTree"
+label_settings = SubResource("LabelSettings_fdj3s")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2069076628]
-visible = false
 material = SubResource("ShaderMaterial_x8s0q")
 layout_mode = 1
 anchors_preset = 15

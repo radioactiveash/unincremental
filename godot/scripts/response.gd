@@ -1,4 +1,4 @@
-extends Label
+extends RichTextLabel
 
 var full_text = ""
 var cur_chars = 0
