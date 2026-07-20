@@ -18,6 +18,7 @@ dest_files=["res://.godot/imported/NightSkyHDRI001_1K_TONEMAPPED.jpg-fc5c9f3b4f2
 
 compress/mode=2
 compress/high_quality=false
+compress/high_quality_mode=0
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
