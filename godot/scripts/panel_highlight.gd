@@ -4,7 +4,7 @@ extends PanelContainer
 var selected = false
 @onready var stylebox: StyleBoxFlat = load("res://styles/black.tres")
 var this_stylebox: StyleBoxFlat
-var target_color = Color.DARK_GRAY / 2
+var target_color = Color.DARK_GRAY /2
 
 @onready var label: Label = $Label
 
@@ -16,7 +16,7 @@ func _ready():
 	
 
 func _process(delta: float) -> void:
-	target_color = Color.DARK_GRAY / 2
+	target_color = Color.DARK_GRAY /2
 	if(get_global_rect().has_point(get_global_mouse_position())):
 		target_color = Color.WHITE
 		

@@ -33,6 +33,7 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ies5r"]
 panorama = ExtResource("6_fsdge")
 filter = false
+energy_multiplier = 0.5
 
 [sub_resource type="Sky" id="Sky_wfwyk"]
 sky_material = SubResource("PanoramaSkyMaterial_ies5r")
@@ -40,9 +41,12 @@ process_mode = 1
 
 [sub_resource type="Environment" id="Environment_fsdge"]
 background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_wfwyk")
 
 [sub_resource type="LabelSettings" id="LabelSettings_4k7nj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ies5r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2yge"]
 
@@ -59,12 +63,12 @@ shader = ExtResource("2_yhbhu")
 shader_parameter/tex = SubResource("ViewportTexture_6xkc8")
 shader_parameter/mask_type = 1
 shader_parameter/curve = 0.0
-shader_parameter/sharpness = 0.666667
+shader_parameter/sharpness = 1.0
 shader_parameter/color_offset = 0.0
 shader_parameter/mask_brightness = 1.0
 shader_parameter/scanline_brightness = 1.0
 shader_parameter/min_scanline_thickness = 0.5
-shader_parameter/aspect = 0.75
+shader_parameter/aspect = 0.56000000285
 shader_parameter/wobble_strength = 0.0
 
 [node name="Main" type="Control" unique_id=1880051382]
@@ -261,6 +265,7 @@ mouse_filter = 1
 theme_override_styles/panel = ExtResource("6_f2ya0")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/console/VBoxContainer/GameInfo" unique_id=1279738114]
+material = SubResource("CanvasItemMaterial_ies5r")
 layout_mode = 2
 
 [node name="HistoryRows" type="VBoxContainer" parent="SubViewportContainer/SubViewport/GamePanel/MarginContainer/VSplitContainer/HSplitContainer/console/VBoxContainer/GameInfo/ScrollContainer" unique_id=1868019961]
@@ -313,6 +318,7 @@ text = "TechTree"
 label_settings = SubResource("LabelSettings_fdj3s")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2069076628]
+visible = false
 material = SubResource("ShaderMaterial_x8s0q")
 layout_mode = 1
 anchors_preset = 15
