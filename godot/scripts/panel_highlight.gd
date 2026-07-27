@@ -6,7 +6,6 @@ var selected = false
 var this_stylebox: StyleBoxFlat
 var target_color = Color.DARK_GRAY /2
 
-@onready var label: Label = $Label
 
 func _ready():
 	this_stylebox = stylebox.duplicate()
@@ -22,5 +21,3 @@ func _process(delta: float) -> void:
 		
 	var color = lerp(this_stylebox.border_color, target_color, 10 *delta)
 	this_stylebox.border_color = color
-	label.label_settings.font_color = color
-	
