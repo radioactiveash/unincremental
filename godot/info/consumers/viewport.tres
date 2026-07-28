@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ConsumerInfo" format=3 uid="uid://ce2wmbiecshlc"]
+
+[ext_resource type="Script" uid="uid://cdpy70igskill" path="res://scripts/consumer_info.gd" id="1_cjb5c"]
+
+[resource]
+script = ExtResource("1_cjb5c")
+metadata/_custom_type_script = "uid://cdpy70igskill"

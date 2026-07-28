@@ -16,7 +16,7 @@ func remove_subscribed_info(info: Enums.Information):
 	subscribed_info[info] = false
 
 
-func _on_timer_timeout() -> void:
+func tickupdate() -> void:
 	var output = "........ TICK UPDATES ........"
 	for i in subscribed_info.size():
 		if(subscribed_info[i] == true):

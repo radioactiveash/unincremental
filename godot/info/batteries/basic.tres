@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BatteryInfo" format=3 uid="uid://c3qwnon2rujfk"]
+
+[ext_resource type="Script" uid="uid://bg5pm4m6kql38" path="res://scripts/battery_info.gd" id="1_o372q"]
+
+[resource]
+script = ExtResource("1_o372q")
+metadata/_custom_type_script = "uid://bg5pm4m6kql38"
