@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d22j7iqjapbw0"]
+
+[ext_resource type="FontFile" uid="uid://2q4yhli0efmu" path="res://fonts/Terminus (TTF) 500.ttf" id="1_b1sip"]
+
+[node name="powerelement" type="Control" unique_id=1433473161]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=939411453]
+layout_mode = 0
+offset_right = 115.0
+offset_bottom = 50.0
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer" unique_id=1897208486]
+layout_mode = 2
+flat = true
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1680726880]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_b1sip")
+text = "Power Element"

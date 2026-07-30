@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://lp172ywq783l"]
+
+[ext_resource type="Script" uid="uid://cdpy70igskill" path="res://info/consumer.gd" id="1_o0idq"]
+
+[node name="viewport" type="Node" unique_id=1029814495]
+script = ExtResource("1_o0idq")
+power_consumption = 3

@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="GeneratorInfo" format=3 uid="uid://xrx0kd1k4ior"]
-
-[ext_resource type="Script" uid="uid://cy6uvmnjuo4ii" path="res://scripts/generator_info.gd" id="1_uhtc4"]
-
-[resource]
-script = ExtResource("1_uhtc4")
-metadata/_custom_type_script = "uid://cy6uvmnjuo4ii"

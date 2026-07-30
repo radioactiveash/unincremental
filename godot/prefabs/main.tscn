@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dk8gihepob1a4"]
 
 [ext_resource type="Script" uid="uid://bopt62xcqcof" path="res://scripts/game.gd" id="1_1dwcq"]
-[ext_resource type="StyleBox" uid="uid://d1h7ywra13ck7" path="res://styles/black.tres" id="2_f2ya0"]
+[ext_resource type="StyleBox" uid="uid://d1h7ywra13ck7" path="res://styles/black_whiteborder.tres" id="2_f2ya0"]
 [ext_resource type="Shader" uid="uid://6n2mgcciu05m" path="res://crt/new_shader.gdshader" id="2_yhbhu"]
 [ext_resource type="Script" uid="uid://6iwj6e6k8uj8" path="res://prefabs/gamepanel.gd" id="3_mkjrf"]
 [ext_resource type="Script" uid="uid://6nhoip5g2pxv" path="res://scripts/console.gd" id="4_xugix"]
@@ -17,18 +17,8 @@
 [ext_resource type="Script" uid="uid://cepcdd81tgutj" path="res://scripts/satellite.gd" id="9_sgtj2"]
 [ext_resource type="Texture2D" uid="uid://c487fp8g1jgq4" path="res://satellite.png" id="11_n3pe4"]
 [ext_resource type="PackedScene" uid="uid://d3ecdsitw4adk" path="res://addons/ascii-shader/AsciiRenderer.tscn" id="11_yhbhu"]
-[ext_resource type="Script" uid="uid://bvw2q6gmlxbdu" path="res://scripts/powersystem.gd" id="13_ies5r"]
-[ext_resource type="Script" uid="uid://d31o67plvtgp3" path="res://scripts/generators.gd" id="15_4k7nj"]
-[ext_resource type="Script" uid="uid://cy6uvmnjuo4ii" path="res://scripts/generator_info.gd" id="16_4k7nj"]
-[ext_resource type="Resource" uid="uid://xrx0kd1k4ior" path="res://info/generators/solarpanel.tres" id="17_fdj3s"]
 [ext_resource type="FontFile" uid="uid://ctfm1eyvwua0o" path="res://fonts/Terminus (TTF) Bold 700.ttf" id="17_ies5r"]
-[ext_resource type="Script" uid="uid://d5drcxwa24l" path="res://scripts/consumers.gd" id="18_6o4cr"]
-[ext_resource type="Script" uid="uid://cdpy70igskill" path="res://scripts/consumer_info.gd" id="19_wbtgq"]
-[ext_resource type="Resource" uid="uid://c2eu7owhcw2ka" path="res://info/consumers/core.tres" id="20_eygei"]
-[ext_resource type="Resource" uid="uid://ce2wmbiecshlc" path="res://info/consumers/viewport.tres" id="21_wvj6i"]
-[ext_resource type="Script" uid="uid://dsm1ll2cs6rhy" path="res://scripts/batteries.gd" id="22_5doxv"]
-[ext_resource type="Script" uid="uid://bg5pm4m6kql38" path="res://scripts/battery_info.gd" id="23_pkkm7"]
-[ext_resource type="Resource" uid="uid://c3qwnon2rujfk" path="res://info/batteries/basic.tres" id="24_bodoi"]
+[ext_resource type="PackedScene" uid="uid://ef2m04ud4aoy" path="res://info/solarpanel.tscn" id="18_ies5r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sli6c"]
 bg_color = Color(0, 0, 0, 1)
@@ -332,21 +322,6 @@ no_depth_test = true
 texture_filter = 0
 texture = ExtResource("11_n3pe4")
 
-[node name="powersystem" type="Node" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/HSplitContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite" unique_id=1807857967]
-script = ExtResource("13_ies5r")
-
-[node name="generators" type="Node" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/HSplitContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite/powersystem" unique_id=1594101809]
-script = ExtResource("15_4k7nj")
-generators = Array[ExtResource("16_4k7nj")]([ExtResource("17_fdj3s")])
-
-[node name="consumers" type="Node" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/HSplitContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite/powersystem" unique_id=1981102660]
-script = ExtResource("18_6o4cr")
-consumers = Array[ExtResource("19_wbtgq")]([ExtResource("20_eygei"), ExtResource("21_wvj6i")])
-
-[node name="batteries" type="Node" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/HSplitContainer/viewport/SubViewportContainer/SubViewport/OrbitalCenter/satellite/powersystem" unique_id=1458639398]
-script = ExtResource("22_5doxv")
-batteries = Array[ExtResource("23_pkkm7")]([ExtResource("24_bodoi")])
-
 [node name="console" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/HSplitContainer" unique_id=1222242840]
 unique_name_in_owner = true
 layout_mode = 2
@@ -413,14 +388,14 @@ max_length = 32
 keep_editing_on_text_submit = true
 script = ExtResource("7_sgtj2")
 
-[node name="techtree" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer" unique_id=48101556]
+[node name="powersystem" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer" unique_id=48101556]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree" unique_id=498792707]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem" unique_id=498792707]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -431,19 +406,19 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
 text = "Power"
 label_settings = SubResource("LabelSettings_fdj3s")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree" unique_id=930337509]
+[node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem" unique_id=930337509]
 layout_mode = 2
 size_flags_vertical = 3
 split_offsets = PackedInt32Array(-4, -6)
 split_offset = -4
 
-[node name="Generation" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree/HSplitContainer" unique_id=62118744]
+[node name="Generators" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=62118744]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree/HSplitContainer/Generation" unique_id=897747708]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators" unique_id=897747708]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -451,16 +426,45 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(12, -23)
 theme_override_fonts/font = ExtResource("17_ies5r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
-text = "Generation"
+text = "Generators"
 label_settings = SubResource("LabelSettings_fdj3s")
 
-[node name="Usage" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree/HSplitContainer" unique_id=2070695774]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators" unique_id=1847598305]
+layout_mode = 2
+
+[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer" unique_id=607300173]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_f2ya0")
+script = ExtResource("6_wfwyk")
+metadata/_custom_type_script = "uid://cwaydqy42l17i"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer" unique_id=54157134]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer" unique_id=728908086]
+layout_mode = 2
+
+[node name="solarpanel" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1433473161 instance=ExtResource("18_ies5r")]
+layout_mode = 2
+
+[node name="solarpanel2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1798978286 instance=ExtResource("18_ies5r")]
+layout_mode = 2
+
+[node name="solarpanel3" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1120056883 instance=ExtResource("18_ies5r")]
+layout_mode = 2
+
+[node name="solarpanel4" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=2013214600 instance=ExtResource("18_ies5r")]
+layout_mode = 2
+
+[node name="Consumers" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=2070695774]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree/HSplitContainer/Usage" unique_id=1636782590]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers" unique_id=1636782590]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -468,16 +472,33 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(12, -23)
 theme_override_fonts/font = ExtResource("17_ies5r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
-text = "Usage"
+text = "Consumers"
 label_settings = SubResource("LabelSettings_fdj3s")
 
-[node name="Battery" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree/HSplitContainer" unique_id=1196618205]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers" unique_id=1754144775]
+layout_mode = 2
+
+[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers/VBoxContainer" unique_id=1964707889]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_f2ya0")
+script = ExtResource("6_wfwyk")
+metadata/_custom_type_script = "uid://cwaydqy42l17i"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers/VBoxContainer" unique_id=195068949]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers/VBoxContainer/ScrollContainer" unique_id=561339423]
+layout_mode = 2
+
+[node name="Batteries" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=1196618205]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/techtree/HSplitContainer/Battery" unique_id=1828914465]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries" unique_id=1828914465]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -485,8 +506,25 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(12, -23)
 theme_override_fonts/font = ExtResource("17_ies5r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
-text = "Battery"
+text = "Batteries"
 label_settings = SubResource("LabelSettings_fdj3s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries" unique_id=252865847]
+layout_mode = 2
+
+[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries/VBoxContainer" unique_id=172056019]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_f2ya0")
+script = ExtResource("6_wfwyk")
+metadata/_custom_type_script = "uid://cwaydqy42l17i"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries/VBoxContainer" unique_id=598754830]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries/VBoxContainer/ScrollContainer" unique_id=1585726974]
+layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2069076628]
 visible = false

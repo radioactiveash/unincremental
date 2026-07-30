@@ -1,4 +1,5 @@
 class_name ConsumerInfo
-extends Resource
+extends Node
 
+@export var on: bool = false
 @export var power_consumption = 2

@@ -13,4 +13,4 @@ func tickupdate() -> void:
 	$CSGTorus3D.rotate(Vector3(0, -1, 0), orbit_speed * %game.tickspeed)
 	
 	
-	power_system.update_power()
+	#power_system.update_power()

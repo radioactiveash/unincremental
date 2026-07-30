@@ -1,8 +1,8 @@
 class_name PanelHighlight
-extends PanelContainer
+extends Container
 
 var selected = false
-@onready var stylebox: StyleBoxFlat = load("res://styles/black.tres")
+@onready var stylebox: StyleBoxFlat = load("res://styles/black_whiteborder.tres")
 var this_stylebox: StyleBoxFlat
 var target_color = Color.DARK_GRAY /2
 

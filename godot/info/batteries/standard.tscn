@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b130pjqup3jws"]
+
+[ext_resource type="Script" uid="uid://bg5pm4m6kql38" path="res://info/battery.gd" id="1_8qg6q"]
+
+[node name="standard" type="Node" unique_id=415907497]
+script = ExtResource("1_8qg6q")
+limit = 16.0
