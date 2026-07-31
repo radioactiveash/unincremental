@@ -26,20 +26,12 @@ func get_batteries() -> Array[BatteryInfo]:
 	return result
 
 
-func _ready() -> void:
-	%game.timer.timeout.connect(_on_timer_timeout)
+#func _ready() -> void:
+#	%game.timer.timeout.connect(_on_timer_timeout)
 
 
-func _on_timer_timeout() -> void:
-	update_power() ## TODO - seperate from tickspeed
-	pass
-
-
-func update_power() -> void:
+func _physics_process(delta: float) -> void:
 	
-	print(generators)
-	print(consumers)
-	print(batteries)
 	
 	var generated_watts = _get_power_generation_from_generators()
 	print("generated_watts: ", generated_watts)
@@ -52,21 +44,38 @@ func update_power() -> void:
 		
 		_fully_power_consumers()
 		
-		pass
+		var leftover_power = generated_watts - power_need
+		
+		for battery in _get_charging_batteries():
+			if battery.capacity > battery.charge:
+				leftover_power = _charge_battery(battery, leftover_power)
+	
+	
 	elif generated_watts == power_need:
 		print("generated_watts == power_need")
+		_fully_power_consumers()
 		
-		pass
 	elif generated_watts < power_need:
 		print("generated_watts < power_need")
 		
 		var extra_power_needed = power_need - generated_watts
 		
-		if(_get_discharging_batteries().size() == 0):
-			pass
+		if(_get_discharging_batteries().size() > 0):
+			for battery in _get_discharging_batteries():
+				if extra_power_needed > 0:
+					print("extra_power_needed: ", extra_power_needed)
+					extra_power_needed = _discharge_battery(battery, extra_power_needed)
+					print("battery discharged AND extra_power_needed: ", extra_power_needed)
+				else: break
+			
+			if extra_power_needed > 0:
+				#ERROR STATE
+				print("ERROR: not enough power WITH battery discharges")
+				pass
 		else:
+			#ERROR STATE
+			print("ERROR: not enough power, no batteries discharged")
 			pass
-		pass
 
 
 func _get_power_generation_from_generators() -> float:
@@ -102,10 +111,32 @@ func _fully_power_consumers() -> void:
 		if(consumer.on):
 			consumer.powered = true
 		
-func _partially_power_consumers(power: int) -> void:
+func _partially_power_consumers(power: float) -> void:
 	for consumer in consumers:
 		if consumer.on and power > 0:
 			consumer.powered = true
 			power -= consumer.power_consumption
 		else:
 			consumer.powered = false
+
+func _charge_battery(battery: BatteryInfo, leftover_power: float):
+	
+	if leftover_power > battery.charge_limit:
+		
+		battery.charge += battery.charge_limit
+		leftover_power -= battery.charge_limit
+	else:
+		battery.charge += leftover_power
+		leftover_power = 0
+		
+	if battery.charge > battery.capacity:
+		leftover_power = battery.charge - battery.capacity
+		battery.charge = battery.capacity
+		
+	return leftover_power
+func _discharge_battery(battery: BatteryInfo, extra_power_needed: float) -> float:
+	var discharge_amount = min(battery.discharge_limit, battery.capacity, extra_power_needed)
+	
+	battery.charge -= discharge_amount
+	extra_power_needed -= discharge_amount
+	return extra_power_needed

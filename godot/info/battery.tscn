@@ -1,9 +1,24 @@
 [gd_scene format=3 uid="uid://di282us5lv2kv"]
 
+[ext_resource type="Script" uid="uid://bg5pm4m6kql38" path="res://info/battery.gd" id="1_322f3"]
+
 [node name="Battery" type="PanelContainer" unique_id=1705150031]
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_322f3")
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1956053384]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=557212818]
 layout_mode = 2
-size_flags_vertical = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer" unique_id=1400035343]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=1956053384]
+layout_mode = 2
+size_flags_vertical = 3
+value = 32.0
+fill_mode = 3
+
+[connection signal="toggled" from="VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]

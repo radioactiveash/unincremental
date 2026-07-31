@@ -552,7 +552,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Battery" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1705150031 instance=ExtResource("20_4k7nj")]
+[node name="Battery2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1705150031 instance=ExtResource("20_4k7nj")]
+layout_mode = 2
+
+[node name="Battery" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1981631868 instance=ExtResource("20_4k7nj")]
+layout_mode = 2
+
+[node name="Battery3" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=277677356 instance=ExtResource("20_4k7nj")]
+layout_mode = 2
+
+[node name="Battery4" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=820942914 instance=ExtResource("20_4k7nj")]
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2069076628]

@@ -5,7 +5,7 @@ extends Node
 var cur_satellite: Satellite
 
 
-var tickspeed = 0.5 #tickspeed in s #0.01 hardlimit
+var tickspeed = 0.02 #tickspeed in s #0.01 hardlimit
 
 var tickcount = 0
 func _ready() -> void:
