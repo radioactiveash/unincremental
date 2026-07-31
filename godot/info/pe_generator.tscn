@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ef2m04ud4aoy"]
+
+[ext_resource type="PackedScene" uid="uid://d22j7iqjapbw0" path="res://info/powerelement.tscn" id="1_f04vu"]
+[ext_resource type="Script" uid="uid://cy6uvmnjuo4ii" path="res://info/generator.gd" id="2_g770s"]
+[ext_resource type="FontFile" uid="uid://cu8snur8kkfxt" path="res://fonts/SGr-Iosevka-Regular.ttc" id="3_ayawl"]
+
+[node name="pe_generator" unique_id=1433473161 instance=ExtResource("1_f04vu")]
+script = ExtResource("2_g770s")
+
+[node name="Label" parent="HBoxContainer" parent_id_path=PackedInt32Array(939411453) index="1" unique_id=1680726880]
+text = "Generator"
+
+[node name="Label2" type="Label" parent="HBoxContainer" parent_id_path=PackedInt32Array(939411453) index="2" unique_id=639988372]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_ayawl")
+text = "+X Watts"
+
+[connection signal="toggled" from="HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]

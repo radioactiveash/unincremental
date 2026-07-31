@@ -1,5 +1,5 @@
 class_name BatteryInfo
-extends Node
+extends Control
 
 @export var state = Enums.BatteryStates.CHARGING
 @export var limit: float = 32

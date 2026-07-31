@@ -1,5 +1,10 @@
 class_name ConsumerInfo
-extends Node
+extends Control
 
 @export var on: bool = false
+@export var powered: bool = false
 @export var power_consumption = 2
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	on = toggled_on

@@ -18,7 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://c487fp8g1jgq4" path="res://satellite.png" id="11_n3pe4"]
 [ext_resource type="PackedScene" uid="uid://d3ecdsitw4adk" path="res://addons/ascii-shader/AsciiRenderer.tscn" id="11_yhbhu"]
 [ext_resource type="FontFile" uid="uid://ctfm1eyvwua0o" path="res://fonts/Terminus (TTF) Bold 700.ttf" id="17_ies5r"]
-[ext_resource type="PackedScene" uid="uid://ef2m04ud4aoy" path="res://info/solarpanel.tscn" id="18_ies5r"]
+[ext_resource type="Script" uid="uid://bvw2q6gmlxbdu" path="res://scripts/powersystem.gd" id="18_fdj3s"]
+[ext_resource type="PackedScene" uid="uid://ef2m04ud4aoy" path="res://info/pe_generator.tscn" id="18_ies5r"]
+[ext_resource type="PackedScene" uid="uid://vrwvywuyosgw" path="res://info/pe_consumer.tscn" id="19_mkjrf"]
+[ext_resource type="PackedScene" uid="uid://di282us5lv2kv" path="res://info/battery.tscn" id="20_4k7nj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sli6c"]
 bg_color = Color(0, 0, 0, 1)
@@ -221,9 +224,9 @@ split_offset = -40
 [node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer" unique_id=2066171699]
 layout_mode = 2
 size_flags_vertical = 3
-split_offsets = PackedInt32Array(0, 0)
 
 [node name="tickscreen" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/HSplitContainer" unique_id=915106663]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
@@ -272,7 +275,7 @@ stretch = true
 handle_input_locally = false
 scaling_3d_mode = 5
 anisotropic_filtering_level = 0
-size = Vector2i(376, 380)
+size = Vector2i(586, 380)
 render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/HSplitContainer/viewport/SubViewportContainer/SubViewport" unique_id=519381698]
@@ -393,7 +396,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = ExtResource("2_f2ya0")
-script = ExtResource("6_wfwyk")
+script = ExtResource("18_fdj3s")
 
 [node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem" unique_id=498792707]
 layout_mode = 2
@@ -412,13 +415,13 @@ size_flags_vertical = 3
 split_offsets = PackedInt32Array(-4, -6)
 split_offset = -4
 
-[node name="Generators" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=62118744]
+[node name="generators" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=62118744]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators" unique_id=897747708]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators" unique_id=897747708]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -429,42 +432,47 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
 text = "Generators"
 label_settings = SubResource("LabelSettings_fdj3s")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators" unique_id=1847598305]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators" unique_id=1847598305]
 layout_mode = 2
 
-[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer" unique_id=607300173]
+[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer" unique_id=607300173]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 metadata/_custom_type_script = "uid://cwaydqy42l17i"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer" unique_id=54157134]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer/PanelHighlight" unique_id=1315773325]
+layout_mode = 2
+text = "-> X Watts"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer" unique_id=54157134]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer" unique_id=728908086]
+[node name="generatorinfo" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer/ScrollContainer" unique_id=728908086]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="solarpanel" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1433473161 instance=ExtResource("18_ies5r")]
+[node name="solarpanel" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer/ScrollContainer/generatorinfo" unique_id=1433473161 instance=ExtResource("18_ies5r")]
 layout_mode = 2
 
-[node name="solarpanel2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1798978286 instance=ExtResource("18_ies5r")]
+[node name="solarpanel2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer/ScrollContainer/generatorinfo" unique_id=1798978286 instance=ExtResource("18_ies5r")]
 layout_mode = 2
 
-[node name="solarpanel3" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1120056883 instance=ExtResource("18_ies5r")]
+[node name="solarpanel3" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer/ScrollContainer/generatorinfo" unique_id=1120056883 instance=ExtResource("18_ies5r")]
 layout_mode = 2
 
-[node name="solarpanel4" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Generators/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=2013214600 instance=ExtResource("18_ies5r")]
+[node name="solarpanel4" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/generators/VBoxContainer/ScrollContainer/generatorinfo" unique_id=2013214600 instance=ExtResource("18_ies5r")]
 layout_mode = 2
 
-[node name="Consumers" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=2070695774]
+[node name="consumers" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=2070695774]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers" unique_id=1636782590]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers" unique_id=1636782590]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -475,30 +483,41 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
 text = "Consumers"
 label_settings = SubResource("LabelSettings_fdj3s")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers" unique_id=1754144775]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers" unique_id=1754144775]
 layout_mode = 2
 
-[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers/VBoxContainer" unique_id=1964707889]
+[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer" unique_id=1964707889]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 metadata/_custom_type_script = "uid://cwaydqy42l17i"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers/VBoxContainer" unique_id=195068949]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/PanelHighlight" unique_id=262408009]
+layout_mode = 2
+text = "-> X Watts"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer" unique_id=195068949]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Consumers/VBoxContainer/ScrollContainer" unique_id=561339423]
+[node name="consumerinfo" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer" unique_id=561339423]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Batteries" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=1196618205]
+[node name="pe_viewport" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=523331408 instance=ExtResource("19_mkjrf")]
+layout_mode = 2
+
+[node name="pe_viewport2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=1769321533 instance=ExtResource("19_mkjrf")]
+layout_mode = 2
+
+[node name="batteries" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=1196618205]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries" unique_id=1828914465]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries" unique_id=1828914465]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -509,25 +528,34 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sli6c")
 text = "Batteries"
 label_settings = SubResource("LabelSettings_fdj3s")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries" unique_id=252865847]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries" unique_id=252865847]
 layout_mode = 2
 
-[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries/VBoxContainer" unique_id=172056019]
+[node name="PanelHighlight" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer" unique_id=172056019]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_f2ya0")
 script = ExtResource("6_wfwyk")
 metadata/_custom_type_script = "uid://cwaydqy42l17i"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries/VBoxContainer" unique_id=598754830]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/PanelHighlight" unique_id=1814634748]
+layout_mode = 2
+text = "-> X Watts"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer" unique_id=598754830]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/Batteries/VBoxContainer/ScrollContainer" unique_id=1585726974]
+[node name="batteryinfo" type="HBoxContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer" unique_id=1585726974]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Battery" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1705150031 instance=ExtResource("20_4k7nj")]
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2069076628]
-visible = false
 material = SubResource("ShaderMaterial_x8s0q")
 layout_mode = 1
 anchors_preset = 15

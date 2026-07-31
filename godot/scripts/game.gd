@@ -8,7 +8,7 @@ var cur_satellite: Satellite
 var tickspeed = 0.5 #tickspeed in s #0.01 hardlimit
 
 var tickcount = 0
-func _on_ready() -> void:
+func _ready() -> void:
 	change_tickspeed(tickspeed)
 
 func _on_timer_timeout() -> void:

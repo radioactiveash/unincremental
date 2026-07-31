@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://vrwvywuyosgw"]
+
+[ext_resource type="PackedScene" uid="uid://d22j7iqjapbw0" path="res://info/powerelement.tscn" id="1_mvx6o"]
+[ext_resource type="Script" uid="uid://cdpy70igskill" path="res://info/consumer.gd" id="2_ncuko"]
+[ext_resource type="FontFile" uid="uid://c4v00oeb7gh4h" path="res://fonts/SGr-Iosevka-Medium.ttc" id="3_ceink"]
+
+[node name="pe_consumer" unique_id=1433473161 instance=ExtResource("1_mvx6o")]
+script = ExtResource("2_ncuko")
+
+[node name="Label" parent="HBoxContainer" parent_id_path=PackedInt32Array(939411453) index="1" unique_id=1680726880]
+text = "Consumer"
+
+[node name="Label2" type="Label" parent="HBoxContainer" parent_id_path=PackedInt32Array(939411453) index="2" unique_id=1825971194]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ceink")
+text = "-X Watts"
+
+[connection signal="toggled" from="HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]

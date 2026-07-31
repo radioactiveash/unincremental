@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://di282us5lv2kv"]
+
+[node name="Battery" type="PanelContainer" unique_id=1705150031]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1956053384]
+layout_mode = 2
+size_flags_vertical = 1
