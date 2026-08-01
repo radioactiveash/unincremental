@@ -11,6 +11,7 @@ script = ExtResource("1_322f3")
 layout_mode = 2
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer" unique_id=1400035343]
+custom_maximum_size = Vector2(-1, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6

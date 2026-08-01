@@ -505,10 +505,22 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="pe_viewport" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=523331408 instance=ExtResource("19_mkjrf")]
+[node name="pe_consumer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=2127285168 instance=ExtResource("19_mkjrf")]
 layout_mode = 2
 
-[node name="pe_viewport2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=1769321533 instance=ExtResource("19_mkjrf")]
+[node name="pe_consumer2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=1802933991 instance=ExtResource("19_mkjrf")]
+layout_mode = 2
+
+[node name="pe_consumer3" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=35966026 instance=ExtResource("19_mkjrf")]
+layout_mode = 2
+
+[node name="pe_consumer4" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=1824078114 instance=ExtResource("19_mkjrf")]
+layout_mode = 2
+
+[node name="pe_consumer5" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=2040820423 instance=ExtResource("19_mkjrf")]
+layout_mode = 2
+
+[node name="pe_consumer6" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/consumers/VBoxContainer/ScrollContainer/consumerinfo" unique_id=1812798446 instance=ExtResource("19_mkjrf")]
 layout_mode = 2
 
 [node name="batteries" type="PanelContainer" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer" unique_id=1196618205]
@@ -552,10 +564,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Battery2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1705150031 instance=ExtResource("20_4k7nj")]
+[node name="Battery" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1981631868 instance=ExtResource("20_4k7nj")]
 layout_mode = 2
 
-[node name="Battery" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1981631868 instance=ExtResource("20_4k7nj")]
+[node name="Battery2" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=1705150031 instance=ExtResource("20_4k7nj")]
 layout_mode = 2
 
 [node name="Battery3" parent="SubViewportContainer/SubViewport/gamepanel/VSplitContainer/powersystem/HSplitContainer/batteries/VBoxContainer/ScrollContainer/batteryinfo" unique_id=277677356 instance=ExtResource("20_4k7nj")]
