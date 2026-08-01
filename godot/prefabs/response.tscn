@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfrdiq05vhugp"]
 
-[ext_resource type="FontFile" uid="uid://ctfm1eyvwua0o" path="res://fonts/Terminus (TTF) Bold 700.ttf" id="1_gs0vp"]
+[ext_resource type="FontVariation" uid="uid://bxstjf4amabvy" path="res://fonts/iosevka_wide.tres" id="1_gs0vp"]
 [ext_resource type="Script" uid="uid://bo21k5l23h75q" path="res://scripts/response.gd" id="2_gs0vp"]
 
 [node name="Response" type="RichTextLabel" unique_id=1728190919]

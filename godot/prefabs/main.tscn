@@ -17,7 +17,8 @@
 [ext_resource type="Script" uid="uid://cepcdd81tgutj" path="res://scripts/satellite.gd" id="9_sgtj2"]
 [ext_resource type="Texture2D" uid="uid://c487fp8g1jgq4" path="res://satellite.png" id="11_n3pe4"]
 [ext_resource type="PackedScene" uid="uid://d3ecdsitw4adk" path="res://addons/ascii-shader/AsciiRenderer.tscn" id="11_yhbhu"]
-[ext_resource type="FontFile" uid="uid://ctfm1eyvwua0o" path="res://fonts/Terminus (TTF) Bold 700.ttf" id="17_ies5r"]
+[ext_resource type="FontVariation" uid="uid://bxstjf4amabvy" path="res://fonts/iosevka_wide.tres" id="17_6o4cr"]
+[ext_resource type="FontFile" uid="uid://cu8snur8kkfxt" path="res://fonts/SGr-Iosevka-Regular.ttc" id="17_ies5r"]
 [ext_resource type="Script" uid="uid://bvw2q6gmlxbdu" path="res://scripts/powersystem.gd" id="18_fdj3s"]
 [ext_resource type="PackedScene" uid="uid://ef2m04ud4aoy" path="res://info/pe_generator.tscn" id="18_ies5r"]
 [ext_resource type="PackedScene" uid="uid://vrwvywuyosgw" path="res://info/pe_consumer.tscn" id="19_mkjrf"]
@@ -384,7 +385,7 @@ text = " > "
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_fonts/font = ExtResource("17_ies5r")
+theme_override_fonts/font = ExtResource("17_6o4cr")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_h2yge")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lquwl")
 max_length = 32
@@ -577,6 +578,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2069076628]
+visible = false
 material = SubResource("ShaderMaterial_x8s0q")
 layout_mode = 1
 anchors_preset = 15

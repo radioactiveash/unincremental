@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" format=3 uid="uid://bxstjf4amabvy"]
+
+[ext_resource type="FontFile" uid="uid://cu8snur8kkfxt" path="res://fonts/SGr-Iosevka-Regular.ttc" id="1_tn81s"]
+
+[resource]
+base_font = ExtResource("1_tn81s")
+spacing_glyph = 1

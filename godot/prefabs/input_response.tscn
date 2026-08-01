@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bygpqsrkr7quo"]
 
 [ext_resource type="Script" uid="uid://ce7op3ww3txru" path="res://scripts/input_response.gd" id="1_ljbb3"]
-[ext_resource type="FontFile" uid="uid://ctfm1eyvwua0o" path="res://fonts/Terminus (TTF) Bold 700.ttf" id="2_ljbb3"]
+[ext_resource type="FontVariation" uid="uid://bxstjf4amabvy" path="res://fonts/iosevka_wide.tres" id="2_ljbb3"]
 [ext_resource type="PackedScene" uid="uid://dfrdiq05vhugp" path="res://prefabs/response.tscn" id="3_wlriq"]
 
 [node name="InputResponse" type="VBoxContainer" unique_id=1683138345]
