@@ -154,7 +154,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("2_yhbhu")
 shader_parameter/tex = SubResource("ViewportTexture_6xkc8")
-shader_parameter/mask_type = 1
+shader_parameter/mask_type = 5
 shader_parameter/curve = 0.0
 shader_parameter/sharpness = 1.0
 shader_parameter/color_offset = 0.0
@@ -578,7 +578,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2069076628]
-visible = false
 material = SubResource("ShaderMaterial_x8s0q")
 layout_mode = 1
 anchors_preset = 15
